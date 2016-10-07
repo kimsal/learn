@@ -1,0 +1,54 @@
+<div class="data">
+                  <form action="http://poloniex.com/private.php" method="get" id="buyForm">
+                    <div class="top">
+                      <div class="row">
+                        <div class="desc">Price:</div>
+                        <div class="details">
+                          <div class="currency primaryCurrency">BTC</div>
+                          <div class="num">
+                            <input type="text" name="buyRate" id="buyRate" value="">
+                            </div>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="desc">Amount:</div>
+                        <div class="details">
+                          <div class="currency secondaryCurrency">LSK</div>
+                          <div class="num">
+                            <input type="text" name="buyAmount" id="buyAmount" value="">
+                          </div>
+                        </div>
+                      </div>
+                                          </div>
+                  
+                    <div class="bottom">
+                      <div class="row">
+                        <div class="desc">Total:</div>
+                        <div class="details">
+                          <div class="currency primaryCurrency">BTC</div>
+                          <div class="num">
+                            <input type="text" name="buyTotal" id="buyTotal" value="">
+                          </div>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="desc">
+                          <span class="loginRequired">
+                            Fee: <a href="/feeTier" class="standard"><span class="makerFee">0.20</span>/<span class="takerFee">0.20</span>%</a>
+                          </span>
+                        </div>
+                      </div> 
+                      <input type="hidden" name="buyCommand" id="buyCommand" value="buy">
+                      <div class="">
+                        <div class="cta">
+                          <button class="theButton" type="submit">Buy</button>
+                        </div>
+                      </div>
+                      <div class="loginMessage">
+                        <a href="/login" class="standard">Sign In</a> or <a href="/signup" class="standard">Create an Account</a> to  trade.
+                      </div>
+                    </div>
+
+                  </form>
+                  <!-- end data -->
+                </div>

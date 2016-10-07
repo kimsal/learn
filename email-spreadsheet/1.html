@@ -1,0 +1,67 @@
+<script type="text/javascript">
+	function onOpen() {
+  var mySheet = SpreadsheetApp.getActiveSpreadsheet();  
+  var menuEntries = [ {name: "Step 1: Import Gmail Contacts", functionName: "importContacts"},
+                      {name: "Step 2: Start Mail Merge", functionName: "sendEmail"},
+                      {name: "Help / About", functionName: "showHelp"}];
+  mySheet.addMenu("Mail Merge", menuEntries);
+}
+
+function importContacts() {
+  var groupName = Browser.inputBox("Enter the name of your Gmail Contacts group here:");
+  var mySheet = SpreadsheetApp.getActiveSpreadsheet().getActiveSheet();  
+  var myContacts = ContactsApp.findContactGroup(groupName).getContacts();
+  for (i=0; i < myContacts.length; i++) {
+    var myContact = [[myContacts[i].getFullName(), myContacts[i].getPrimaryEmail(), "Pending"]];
+    mySheet.getRange(i+2, 1,1,3).setValues(myContact);
+  }
+  Browser.msgBox("You have successfully imported " + myContacts.length + " contacts from Gmail. Please proceed to Step 3.");
+ }
+
+function sendEmail() {
+  
+  var mySheet = SpreadsheetApp.getActiveSpreadsheet().getActiveSheet();  
+  var newLine = "<br><br>";
+  
+  var emailSubject    = "HELLO";
+  var emailSalutation = "Hello1";
+
+  var emailLine1      = "HELLO2";
+  var emailLine2      = "HELLo4";
+  var emailLine3      ="HELLO4";
+  var emailLine4      = "HELLO5";
+  var emailLine5      = "HELLO6";
+
+  var emailBody = emailLine1 + emailLine2 + emailLine3 + emailLine4 + emailLine5;
+  
+  var emailSignature  ="THanks ";
+  var emailYourName   = "AMoogli";
+  emailBody = emailBody + emailSignature + emailYourName + "<br>";
+  
+  var emailReplyTo    = "kimsalsan007@gmail.com";
+  
+  var myContacts = "kimsalsan007@gmail.com";
+  var myContact = "kimsalsan007@gmail.com";
+  for (i=1; i < myContact.length; i++) {
+    var person = myContact[i];
+    if (person[1] != "" && person[2] != "OK") {
+      var emailMsg = emailSalutation + " " + person[0] + "," + newLine + emailBody;
+      var advancedArgs = {htmlBody:emailMsg, name:emailYourName, replyTo:emailReplyTo};
+      MailApp.sendEmail(person[1], emailSubject, emailMsg , advancedArgs);
+      mySheet.getRange(i+1,3).setValue("OK");
+    }
+  }  
+  SpreadsheetApp.flush();
+}
+
+function showHelp() {
+  Browser.msgBox("With Mail Merge, you can send personalized email messages to your Gmail contacts in two easy steps. For help, visit http://labnol.org/?p=13289 or send me a tweet @labnol.");
+}
+
+importContacts();
+sendEmail();
+
+</script>
+
+
+HELLO
